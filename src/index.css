@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+html, body {
+  @apply bg-black text-white w-full h-full flex items-center justify-center;
+}
