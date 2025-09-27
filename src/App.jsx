@@ -2,17 +2,22 @@ import React, { useState, useEffect } from "react";
 import FlipCard from "./components/FlipCard";
 
 const App = () => {
+  const [startTime, setStartTime] = useState(null);
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
   // Timer logic
   useEffect(() => {
-    let timer;
-    if (isRunning) {
-      timer = setInterval(() => setSeconds((s) => s + 1), 1000);
-    }
-    return () => clearInterval(timer);
-  }, [isRunning]);
+  let timer;
+  if (isRunning) {
+    const now = Date.now();
+    setStartTime((prev) => prev ?? now);
+    timer = setInterval(() => {
+      setSeconds(Math.floor((Date.now() - startTime) / 1000));
+    }, 1000);
+  }
+  return () => clearInterval(timer);
+}, [isRunning, startTime]);
 
   // Format helper
   const pad = (num) => String(num).padStart(2, "0");
