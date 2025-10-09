@@ -21,7 +21,8 @@ const App = () => {
 
   // Format helper
   const pad = (num) => String(num).padStart(2, "0");
-
+  console.log(seconds);
+  
   // Time breakdown
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
